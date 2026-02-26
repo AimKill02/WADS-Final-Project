@@ -4,7 +4,7 @@ Course Name: Web Application Development and Security
 Institution: BINUS University International
 
 **1\. Project Information**  
-Project Title: Boardside (a Kanban-Based Study Planner)
+Project Title: Boardside (a Kanban-Based Study Planner)  
 Project Domain: Study Planner & Productivity Tracker  
 Class: L4CC  
 Repository: https://github.com/AimKill02/WADS-Final-Project  
