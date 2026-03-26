@@ -41,6 +41,8 @@ export async function POST(req: Request) {
 
   const title = String(body?.title ?? "").trim();
   const description = String(body?.description ?? "").trim();
+  const icon = String(body?.icon ?? "").trim();
+  const color = String(body?.color ?? "").trim();
 
   if (!title) {
     return NextResponse.json({ error: "Title is required" }, { status: 400 });
@@ -50,6 +52,8 @@ export async function POST(req: Request) {
     data: {
       title,
       description: description || null,
+      icon: icon || null,       
+      color: color || null,     
       userId: session.id,
       columns: {
         create: [

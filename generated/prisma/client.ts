@@ -66,3 +66,28 @@ export type Verification = Prisma.VerificationModel
  * 
  */
 export type Todo = Prisma.TodoModel
+/**
+ * Model Board
+ * 
+ */
+export type Board = Prisma.BoardModel
+/**
+ * Model Column
+ * 
+ */
+export type Column = Prisma.ColumnModel
+/**
+ * Model Card
+ * 
+ */
+export type Card = Prisma.CardModel
+/**
+ * Model Label
+ * 
+ */
+export type Label = Prisma.LabelModel
+/**
+ * Model CardLabel
+ * 
+ */
+export type CardLabel = Prisma.CardLabelModel
