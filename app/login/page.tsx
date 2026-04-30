@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { auth } from "@/lib/firebase";
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
@@ -52,7 +53,9 @@ export default function LoginPage() {
     }
   };
 
-  const handleEmailLogin = async () => {
+  const handleEmailLogin = async (event?: FormEvent<HTMLFormElement>) => {
+    event?.preventDefault();
+
     try {
       setLoading(true);
 
@@ -93,6 +96,7 @@ export default function LoginPage() {
 
         <CardContent className="space-y-4">
           <Button
+            type="button"
             variant="outline"
             className="w-full"
             onClick={handleGoogleLogin}
@@ -107,22 +111,39 @@ export default function LoginPage() {
             <Separator className="flex-1" />
           </div>
 
-          <Input
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <form className="space-y-4" onSubmit={handleEmailLogin}>
+            <div className="space-y-2">
+              <Label htmlFor="login-email">Email</Label>
+              <Input
+                id="login-email"
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                autoComplete="email"
+                required
+              />
+            </div>
 
-          <Input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+            <div className="space-y-2">
+              <Label htmlFor="login-password">Password</Label>
+              <Input
+                id="login-password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                autoComplete="current-password"
+                required
+              />
+            </div>
 
-          <Button className="w-full" onClick={handleEmailLogin} disabled={loading}>
-            {loading ? "Signing in..." : "Login with Email"}
-          </Button>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in..." : "Login with Email"}
+            </Button>
+          </form>
         </CardContent>
 
         <p className="text-center text-sm text-muted-foreground pt-2">
